@@ -12,7 +12,12 @@ namespace MusicShop.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var s = new Store { Albums = db.Albums.ToList() };
+            var s = new Store
+            {
+                Albums = db.Albums.ToList(),
+                Genres = db.Genres.ToList()
+            };
+
             return View(s);
         }
 
@@ -41,7 +46,12 @@ namespace MusicShop.Controllers
                 query = query.Where(x => x.Year <= toYear.Value);
             }
 
-            var s = new Store { Albums = query.ToList() };
+            var s = new Store
+            {
+                Albums = query.ToList(),
+                Genres = db.Genres.ToList()
+            };
+
             return View(s);
         }
 

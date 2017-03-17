@@ -22,7 +22,7 @@
         <div class="col-md-4">
             <select name="genre" class="form-control">
                 <option value="">Select a Genre</option>
-                @foreach (var genre in Model.Albums.Select(x => x.Genre).Distinct())
+                @foreach (var genre in Model.Genres.Select(x => x.Name).Distinct())
                 {
                     <option value="@genre">@genre</option>
                 }
