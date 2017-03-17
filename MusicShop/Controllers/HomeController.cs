@@ -1,4 +1,5 @@
 ﻿using MusicShop.DAL;
+using MusicShop.Database.Repositories;
 using MusicShop.Models;
 using System;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace MusicShop.Controllers
         {
             var s = new Store
             {
-                Albums = db.Albums.ToList(),
-                Genres = db.Genres.ToList()
+                Albums = new AlbumRepository(db).GetAll().ToList(),
+                Genres = new GenreRepository(db).GetAll().ToList()
             };
 
             return View(s);
@@ -24,7 +25,7 @@ namespace MusicShop.Controllers
         [HttpPost]
         public ActionResult Index(string search, string genre, int? fromYear, int? toYear)
         {
-            var query = db.Albums.AsQueryable();
+            var query = new AlbumRepository(db).GetAll();
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -49,7 +50,7 @@ namespace MusicShop.Controllers
             var s = new Store
             {
                 Albums = query.ToList(),
-                Genres = db.Genres.ToList()
+                Genres = new GenreRepository(db).GetAll().ToList()
             };
 
             return View(s);

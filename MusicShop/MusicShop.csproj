@@ -69,6 +69,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -130,6 +131,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\MusicShopContext.cs" />
     <Compile Include="DAL\MusicShopInitializer.cs" />
+    <Compile Include="Database\Repositories\AlbumRepository.cs" />
+    <Compile Include="Database\Repositories\GenreRepository.cs" />
+    <Compile Include="Database\Repositories\IAlbumRepository.cs" />
+    <Compile Include="Database\Repositories\IGenreRepository.cs" />
+    <Compile Include="Database\Repositories\IRepository.cs" />
+    <Compile Include="Database\Repositories\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
