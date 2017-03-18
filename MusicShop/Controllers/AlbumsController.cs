@@ -12,10 +12,7 @@ namespace MusicShop.Controllers
         private MusicShopContext db = new MusicShopContext();
 
         // GET: Albums
-        public ActionResult Index()
-        {
-            return View(db.Albums.ToList());
-        }
+        public ActionResult Index() => View(db.Albums.ToList());
 
         // GET: Albums/Details/5
         public ActionResult Details(int? id)
@@ -24,22 +21,21 @@ namespace MusicShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+
+            var album = db.Albums.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
             }
+
             return View(album);
         }
 
         // GET: Albums/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        public ActionResult Create() => View();
 
         // POST: Albums/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,16 +58,18 @@ namespace MusicShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+
+            var album = db.Albums.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
             }
+
             return View(album);
         }
 
         // POST: Albums/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -83,6 +81,7 @@ namespace MusicShop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(album);
         }
 
@@ -93,11 +92,13 @@ namespace MusicShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Album album = db.Albums.Find(id);
+
+            var album = db.Albums.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
             }
+
             return View(album);
         }
 
@@ -106,9 +107,14 @@ namespace MusicShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Album album = db.Albums.Find(id);
-            db.Albums.Remove(album);
-            db.SaveChanges();
+            var album = db.Albums.Find(id);
+
+            if (album != null)
+            {
+                db.Albums.Remove(album);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 

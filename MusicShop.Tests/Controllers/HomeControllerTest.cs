@@ -1,6 +1,6 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MusicShop.Controllers;
+using System.Web.Mvc;
 
 namespace MusicShop.Tests.Controllers
 {
@@ -11,10 +11,10 @@ namespace MusicShop.Tests.Controllers
         public void Index()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
