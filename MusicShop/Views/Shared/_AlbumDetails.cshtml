@@ -4,10 +4,7 @@
     ViewBag.Title = "Album Details";
 }
 
-<h2>Album Details</h2>
-
 <div>
-    <hr />
     <img style="width:400px;height:228px;" alt="Image Not Available" src="@Model.CoverUrl" />
     <dl class="dl-horizontal">
         <dt>@Html.DisplayNameFor(model => model.Title)</dt>
@@ -18,20 +15,20 @@
         <dd>@Html.DisplayFor(model => model.Genre)</dd>
         <dt>@Html.DisplayNameFor(model => model.Year)</dt>
         <dd>@Html.DisplayFor(model => model.Year)</dd>
-        <dt>@Html.DisplayNameFor(model => model.CoverUrl)</dt>
-        <dd>@Html.DisplayFor(model => model.CoverUrl)</dd>
     </dl>
 
     <table class="table table-hover table-striped table-condensed">
         <thead>
-            <tr>
-                <th>Track Number</th>
-                <th>SongTitle</th>
-                <th>Length</th>
-            </tr>
+        <tr>
+            <th>Track Number</th>
+            <th>SongTitle</th>
+            <th>Length</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var track in Model.Tracks)
+        @if (Model.Tracks.Count > 0)
+        {
+            foreach (var track in Model.Tracks)
             {
                 <tr>
                     <td>@track.Number</td>
@@ -39,11 +36,17 @@
                     <td>@track.Length</td>
                 </tr>
             }
+        }
+        else
+        {
+            <tr><td>No Track Data</td></tr>
+        }
         </tbody>
     </table>
-
 </div>
+
+
 @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>*@
+</p>*@

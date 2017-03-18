@@ -27,10 +27,6 @@ namespace MusicShop.Controllers
         });
 
         [HttpPost]
-        public ActionResult Album(int id)
-        {
-            var album = albumRepository.GetById(id);
-            return PartialView("AlbumnDetails", album);
-        }
+        public ActionResult Album(int id) => PartialView("_AlbumDetails", albumRepository.GetById(id));
     }
 }
