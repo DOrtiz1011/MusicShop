@@ -1,65 +1,36 @@
 ﻿using MusicShop.DAL;
 using MusicShop.Database.Repositories;
 using MusicShop.Models;
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace MusicShop.Controllers
 {
-    public class HomeController : Controller
+    public sealed class HomeController : Controller
     {
-        MusicShopContext db = new MusicShopContext();
-        [HttpGet]
-        public ActionResult Index()
-        {
-            var s = new Store
-            {
-                Albums = new AlbumRepository(db).GetAll().ToList(),
-                Genres = new GenreRepository(db).GetAll().ToList()
-            };
+        private static readonly MusicShopContext db = new MusicShopContext();
+        private readonly AlbumRepository albumRepository = new AlbumRepository(db);
+        private readonly GenreRepository genreRepository = new GenreRepository(db);
 
-            return View(s);
-        }
+        [HttpGet]
+        public ActionResult Index() => View(new Store
+        {
+            Albums = albumRepository.GetAll().ToList(),
+            Genres = genreRepository.GetAll().ToList()
+        });
 
         [HttpPost]
-        public ActionResult Index(string search, string genre, int? fromYear, int? toYear)
+        public ActionResult Index(string search, string genre, int? fromYear, int? toYear) => View(new Store
         {
-            var query = new AlbumRepository(db).GetAll();
-
-            if (!string.IsNullOrEmpty(search))
-            {
-                query = query.Where(x => x.Title.Contains(search) || x.Artist.Contains(search));
-            }
-
-            if (!string.IsNullOrEmpty(genre))
-            {
-                query = query.Where(x => x.Genre == genre);
-            }
-
-            if (fromYear.HasValue)
-            {
-                query = query.Where(x => x.Year >= fromYear.Value);
-            }
-
-            if (toYear.HasValue)
-            {
-                query = query.Where(x => x.Year <= toYear.Value);
-            }
-
-            var s = new Store
-            {
-                Albums = query.ToList(),
-                Genres = new GenreRepository(db).GetAll().ToList()
-            };
-
-            return View(s);
-        }
+            Albums = albumRepository.AdvancedSearch(search, genre, fromYear, toYear).ToList(),
+            Genres = genreRepository.GetAll().ToList()
+        });
 
         [HttpPost]
         public ActionResult Album(int id)
         {
-            throw new NotImplementedException();
+            var album = albumRepository.GetById(id);
+            return PartialView("AlbumnDetails", album);
         }
     }
 }

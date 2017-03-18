@@ -114,15 +114,15 @@
 @section scripts{
     <script>
         $('#albumModal').on('show.bs.modal', function (event) {
+            //debugger;
             var modal = $(this);
             var element = $(event.relatedTarget);
             var url = element.data('url');
             var albumnId = element.data('id');
+            modal.find('#albumModal').html($('<b> Order Id selected: ' + albumnId + '</b>'));
             //TODO: Bind the results
         }).on('show', function () {
-            debugger;
             //make your ajax call populate items or what even you need
-            $(this).find('#albumModal').html($('<b> Order Id selected: ' + element.data('id') + '</b>'));
         });
     </script>
 }
