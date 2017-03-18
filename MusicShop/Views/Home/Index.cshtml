@@ -50,7 +50,7 @@
             <tbody>
                 @foreach (var album in Model.Albums)
                 {
-                    <tr data-toggle="modal" data-target="#albumModal" data-url="@Url.Action("Album", new { id = album.ID })">
+                    <tr data-toggle="modal" data-target="#albumModal" data-id="@album.ID" data-url="@Url.Action("Album", new { id = album.ID })">
                         <td>@album.Title</td>
                         <td>@album.Artist</td>
                         <td>@album.Genre</td>
@@ -61,13 +61,43 @@
         </table>
     </div>
 </div>
+
+<div class="modal fade" id="albumModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Album Details</h4>
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Albums.First().Title)</dt>
+                    <dd>@Html.DisplayFor(model => model.Albums.First().Title)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Albums.First().Artist)</dt>
+                    <dd>@Html.DisplayFor(model => model.Albums.First().Artist)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Albums.First().Genre)</dt>
+                    <dd>@Html.DisplayFor(model => model.Albums.First().Genre)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Albums.First().Year)</dt>
+                    <dd>@Html.DisplayFor(model => model.Albums.First().Year)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Albums.First().CoverUrl)</dt>
+                    <dd>@Html.DisplayFor(model => model.Albums.First().CoverUrl)</dd>
+                </dl>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section scripts{
     <script>
         $('#albumModal').on('show.bs.modal', function (event) {
+            //debugger;
             var modal = $(this);
             var element = $(event.relatedTarget);
             var url = element.data('url');
-
+            var albumnId = element.data('id');
             //TODO: Bind the results
         })
     </script>
