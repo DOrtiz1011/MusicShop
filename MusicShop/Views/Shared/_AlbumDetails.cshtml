@@ -1,20 +1,20 @@
-﻿@model MusicShop.Models.Album
+﻿@model MusicShop.ViewModels.AlbumViewModel
 
 @{
     ViewBag.Title = "Album Details";
 }
 
 <div>
-    <img style="width:400px;height:228px;" alt="Image Not Available" src="@Model.CoverUrl" />
+    <img style="width:400px;height:228px;" alt="Image Not Available" src="@Model.Album.CoverUrl" />
     <dl class="dl-horizontal">
-        <dt>@Html.DisplayNameFor(model => model.Title)</dt>
-        <dd>@Html.DisplayFor(model => model.Title)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Artist)</dt>
-        <dd>@Html.DisplayFor(model => model.Artist)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Genre)</dt>
-        <dd>@Html.DisplayFor(model => model.Genre)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Year)</dt>
-        <dd>@Html.DisplayFor(model => model.Year)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Album.Title)</dt>
+        <dd>@Html.DisplayFor(model => model.Album.Title)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Album.Artist)</dt>
+        <dd>@Html.DisplayFor(model => model.Album.Artist)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Genre.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Genre.Name)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Album.Year)</dt>
+        <dd>@Html.DisplayFor(model => model.Album.Year)</dd>
     </dl>
 
     <table class="table table-hover table-striped table-condensed">
@@ -26,9 +26,9 @@
         </tr>
         </thead>
         <tbody>
-        @if (Model.Tracks.Count > 0)
+        @if (Model.Album.Tracks.Count > 0)
         {
-            foreach (var track in Model.Tracks)
+            foreach (var track in Model.Album.Tracks)
             {
                 <tr>
                     <td>@track.Number</td>

@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MusicShop.DAL
 {
-    public class MusicShopContext : DbContext
+    public sealed class MusicShopContext : DbContext
     {
         public MusicShopContext() : base("MusicShopContext") { }
 

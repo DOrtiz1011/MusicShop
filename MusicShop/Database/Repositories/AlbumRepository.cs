@@ -1,14 +1,14 @@
-﻿using MusicShop.DAL;
-using MusicShop.Models;
+﻿using MusicShop.Models;
+using System.Data.Entity;
 using System.Linq;
 
 namespace MusicShop.Database.Repositories
 {
-    public class AlbumRepository : Repository<Album>, IAlbumRepository
+    internal sealed class AlbumRepository : Repository<Album>, IAlbumRepository
     {
-        public AlbumRepository(MusicShopContext context) : base(context) { }
+        public AlbumRepository(DbContext context) : base(context) { }
 
-        public IQueryable<Album> AdvancedSearch(string search, string genre, int? fromYear, int? toYear)
+        public IQueryable<Album> AdvancedSearch(string search, int genreId, int? fromYear, int? toYear)
         {
             var query = GetAll();
 
@@ -17,9 +17,9 @@ namespace MusicShop.Database.Repositories
                 query = query.Where(x => x.Title.Contains(search) || x.Artist.Contains(search));
             }
 
-            if (!string.IsNullOrEmpty(genre))
+            if (genreId > 0)
             {
-                query = query.Where(x => x.Genre == genre);
+                query = query.Where(x => x.GenreID == genreId);
             }
 
             if (fromYear.HasValue)

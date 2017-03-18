@@ -1,5 +1,4 @@
-﻿@using MusicShop.Models;
-@model Store
+﻿@model MusicShop.ViewModels.StoreViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -37,6 +36,7 @@
         </div>
     </div>
 }
+
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover table-striped table-condensed">
@@ -49,13 +49,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var album in Model.Albums)
+                @foreach (var albumViewModel in Model.Albums)
                 {
-                    <tr data-toggle="modal" data-target="#albumModal" data-id="@album.ID" data-url="@Url.Action("Album", new { id = album.ID })">
-                        <td>@album.Title</td>
-                        <td>@album.Artist</td>
-                        <td>@album.Genre</td>
-                        <td>@album.Year</td>
+                    <tr data-toggle="modal" data-target="#albumModal" data-id="@albumViewModel.Album.ID" data-url="@Url.Action("Album", new { id = albumViewModel.Album.ID })">
+                        <td>@albumViewModel.Album.Title</td>
+                        <td>@albumViewModel.Album.Artist</td>
+                        <td>@albumViewModel.Genre.Name</td>
+                        <td>@albumViewModel.Album.Year</td>
                     </tr>
                 }
             </tbody>
@@ -78,7 +78,6 @@
         </div>
     </div>
 </div>
-
 
 @section scripts{
     <script>

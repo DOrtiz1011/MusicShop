@@ -5,6 +5,6 @@ namespace MusicShop.Database.Repositories
 {
     public interface IAlbumRepository
     {
-        IQueryable<Album> AdvancedSearch(string search, string genre, int? fromYear, int? toYear);
+        IQueryable<Album> AdvancedSearch(string search, int genreId, int? fromYear, int? toYear);
     }
 }

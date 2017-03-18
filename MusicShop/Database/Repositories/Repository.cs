@@ -7,7 +7,7 @@ namespace MusicShop.Database.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected DbSet<T> DbSet;
+        private readonly DbSet<T> DbSet;
 
         public Repository(DbContext context) { DbSet = context.Set<T>(); }
 

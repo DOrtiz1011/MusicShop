@@ -1,21 +1,22 @@
 ﻿using MusicShop.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace MusicShop.DAL
 {
-    public class MusicShopInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<MusicShopContext>
+    public class MusicShopInitializer : DropCreateDatabaseIfModelChanges<MusicShopContext>
     {
         protected override void Seed(MusicShopContext context)
         {
             new List<Album>
             {
-                new Album { ID = 1, Title = "Visible Worlds", Artist = "Conductor", Genre = "New Age", Year = 2000, CoverUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Vista_de_Iquique%2C_Chile%2C_2016-02-11%2C_DD_20.JPG" },
-                new Album { ID = 2, Title = "The Taste of Swing", Artist = "Andy Williams", Genre = "Swing", Year = 2010, CoverUrl = "" },
-                new Album { ID = 3, Title = "H2O", Artist = "Poland Spring", Genre = "Techno", Year = 1845, CoverUrl = "" },
-                new Album { ID = 4, Title = "Of June", Artist = "Owl City", Genre = "Electronica", Year = 2010, CoverUrl = "" },
-                new Album { ID = 5, Title = "Relections", Artist = "Steve Vai", Genre = "Rock", Year = 2005, CoverUrl = "" },
-                new Album { ID = 6, Title = "Live the Life", Artist = "Jacky Cheung", Genre = "Pop", Year = 2007, CoverUrl = "" }
+                new Album { ID = 1, Title = "Visible Worlds", Artist = "Conductor", GenreID = 1, Year = 2000, CoverUrl = "http://s3.amazonaws.com/garysguide/de3245b95c564f9485392ff5fb1631b9original.png" },
+                new Album { ID = 2, Title = "The Taste of Swing", Artist = "Andy Williams", GenreID = 2, Year = 2010, CoverUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Andy_williams_1969.JPG/220px-Andy_williams_1969.JPG" },
+                new Album { ID = 3, Title = "H2O", Artist = "Poland Spring", GenreID = 3, Year = 1845, CoverUrl = "" },
+                new Album { ID = 4, Title = "Of June", Artist = "Owl City", GenreID = 4, Year = 2010, CoverUrl = "" },
+                new Album { ID = 5, Title = "Relections", Artist = "Steve Vai", GenreID = 5, Year = 2005, CoverUrl = "" },
+                new Album { ID = 6, Title = "Live the Life", Artist = "Jacky Cheung", GenreID = 6, Year = 2007, CoverUrl = "" }
             }.ForEach(x => context.Albums.Add(x));
 
             new List<Track>
