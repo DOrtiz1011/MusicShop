@@ -68,6 +68,9 @@
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Album Details</h4>
+            </div>
+            <div class="modal-body">
+                <img style="width:400px;height:228px;" alt="Image Not Available" src="@Model.Albums.First().CoverUrl" />
                 <dl class="dl-horizontal">
                     <dt>@Html.DisplayNameFor(model => model.Albums.First().Title)</dt>
                     <dd>@Html.DisplayFor(model => model.Albums.First().Title)</dd>
@@ -77,11 +80,29 @@
                     <dd>@Html.DisplayFor(model => model.Albums.First().Genre)</dd>
                     <dt>@Html.DisplayNameFor(model => model.Albums.First().Year)</dt>
                     <dd>@Html.DisplayFor(model => model.Albums.First().Year)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Albums.First().CoverUrl)</dt>
-                    <dd>@Html.DisplayFor(model => model.Albums.First().CoverUrl)</dd>
                 </dl>
+
+                <table class="table table-hover table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Track Number</th>
+                            <th>SongTitle</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var track in Model.Albums.First().Tracks)
+                        {
+                            <tr>
+                                <td>@track.Number</td>
+                                <td>@track.SongTitle</td>
+                                <td>@track.Length</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
             </div>
-            <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
@@ -93,12 +114,15 @@
 @section scripts{
     <script>
         $('#albumModal').on('show.bs.modal', function (event) {
-            //debugger;
             var modal = $(this);
             var element = $(event.relatedTarget);
             var url = element.data('url');
             var albumnId = element.data('id');
             //TODO: Bind the results
-        })
+        }).on('show', function () {
+            debugger;
+            //make your ajax call populate items or what even you need
+            $(this).find('#albumModal').html($('<b> Order Id selected: ' + element.data('id') + '</b>'));
+        });
     </script>
 }
