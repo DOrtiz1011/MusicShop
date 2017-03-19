@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace MusicShop.DAL
 {
-    public class MusicShopInitializer : DropCreateDatabaseIfModelChanges<MusicShopContext>
+    public sealed class MusicShopInitializer : DropCreateDatabaseIfModelChanges<MusicShopContext>
     {
         protected override void Seed(MusicShopContext context)
         {
@@ -21,11 +21,11 @@ namespace MusicShop.DAL
 
             new List<Track>
             {
-                new Track { Number = 1, AlbumID = 1, SongTitle = "Connect", Length = new TimeSpan(0, 5, 0) },
-                new Track { Number = 2, AlbumID = 1, SongTitle = "Life Segments", Length = new TimeSpan(0, 4, 0) },
-                new Track { Number = 3, AlbumID = 1, SongTitle = "Gateways", Length = new TimeSpan(0, 8, 0) },
-                new Track { Number = 4, AlbumID = 1, SongTitle = "Target Me", Length = new TimeSpan(0, 6, 24) },
-                new Track { Number = 5, AlbumID = 1, SongTitle = "Tune In", Length = new TimeSpan(0, 4, 30) }
+                new Track { ID = 1, Number = 1, AlbumID = 1, SongTitle = "Connect", Length = new TimeSpan(0, 5, 0) },
+                new Track { ID = 2, Number = 2, AlbumID = 1, SongTitle = "Life Segments", Length = new TimeSpan(0, 4, 0) },
+                new Track { ID = 3, Number = 3, AlbumID = 1, SongTitle = "Gateways", Length = new TimeSpan(0, 8, 0) },
+                new Track { ID = 4, Number = 4, AlbumID = 1, SongTitle = "Target Me", Length = new TimeSpan(0, 6, 24) },
+                new Track { ID = 5, Number = 5, AlbumID = 1, SongTitle = "Tune In", Length = new TimeSpan(0, 4, 30) }
             }.ForEach(x => context.Tracks.Add(x));
 
             new List<Genre>
