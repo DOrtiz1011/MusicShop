@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace MusicShop.Database.Repositories
 {
-    public interface IRepository<T>
+    internal interface IRepository<T>
     {
         void Insert(T entity);
         void Delete(T entity);

@@ -9,7 +9,7 @@ namespace MusicShop.Models
         public int ID { get; set; }
 
         [StringLength(128)]
-        [Index("IX_AlbumnTitleAndArtistId", 1,IsUnique = true)]
+        [Index("IX_AlbumnTitleAndArtistId", 1, IsUnique = true)]
         public string Title { get; set; }
 
         [Index("IX_AlbumnTitleAndArtistId", 2, IsUnique = true)]

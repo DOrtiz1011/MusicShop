@@ -1,4 +1,4 @@
 ﻿namespace MusicShop.Database.Repositories
 {
-    public interface IArtistRepository { }
+    internal interface IArtistRepository { }
 }

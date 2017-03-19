@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 
 namespace MusicShop.Database.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    internal class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> DbSet;
 
-        public Repository(DbContext context) { DbSet = context.Set<T>(); }
+        protected Repository(DbContext context) { DbSet = context.Set<T>(); }
 
         public void Insert(T entity) => DbSet.Add(entity);
 

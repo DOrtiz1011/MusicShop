@@ -1,10 +1,10 @@
-﻿using MusicShop.DAL;
-using MusicShop.Models;
+﻿using MusicShop.Models;
+using System.Data.Entity;
 
 namespace MusicShop.Database.Repositories
 {
-    public class GenreRepository : Repository<Genre>, IGenreRepository
+    internal sealed class GenreRepository : Repository<Genre>, IGenreRepository
     {
-        public GenreRepository(MusicShopContext context) : base(context) { }
+        public GenreRepository(DbContext context) : base(context) { }
     }
 }

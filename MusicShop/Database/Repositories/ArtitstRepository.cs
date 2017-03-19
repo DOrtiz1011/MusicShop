@@ -1,10 +1,10 @@
-﻿using MusicShop.DAL;
-using MusicShop.Models;
+﻿using MusicShop.Models;
+using System.Data.Entity;
 
 namespace MusicShop.Database.Repositories
 {
-    public class ArtistRepository : Repository<Artist>, IArtistRepository
+    internal sealed class ArtistRepository : Repository<Artist>, IArtistRepository
     {
-        public ArtistRepository(MusicShopContext context) : base(context) { }
+        public ArtistRepository(DbContext context) : base(context) { }
     }
 }

@@ -9,7 +9,7 @@ namespace MusicShop.Database.Repositories
     {
         public AlbumRepository(DbContext context) : base(context) { }
 
-        public IQueryable<Album> AdvancedSearch(string search, int genreId, int? fromYear, int? toYear, List<int> artistIds)
+        public IEnumerable<Album> AdvancedSearch(string search, int genreId, int? fromYear, int? toYear, List<int> artistIds)
         {
             var query = GetAll();
 
