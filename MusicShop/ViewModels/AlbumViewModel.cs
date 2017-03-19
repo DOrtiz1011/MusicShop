@@ -6,5 +6,6 @@ namespace MusicShop.ViewModels
     {
         public Album Album { get; set; }
         public Genre Genre { get; set; }
+        public Artist Artist { get; set; }
     }
 }

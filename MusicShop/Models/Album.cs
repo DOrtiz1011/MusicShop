@@ -6,7 +6,7 @@ namespace MusicShop.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Artist { get; set; }
+        public int ArtistID { get; set; }
         public int GenreID { get; set; }
         public int Year { get; set; }
         public string CoverUrl { get; set; }

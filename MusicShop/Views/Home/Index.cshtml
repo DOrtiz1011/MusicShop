@@ -53,7 +53,7 @@
                 {
                     <tr data-toggle="modal" data-target="#albumModal" data-id="@albumViewModel.Album.ID" data-url="@Url.Action("Album", new { id = albumViewModel.Album.ID })">
                         <td>@albumViewModel.Album.Title</td>
-                        <td>@albumViewModel.Album.Artist</td>
+                        <td>@albumViewModel.Artist.Name</td>
                         <td>@albumViewModel.Genre.Name</td>
                         <td>@albumViewModel.Album.Year</td>
                     </tr>

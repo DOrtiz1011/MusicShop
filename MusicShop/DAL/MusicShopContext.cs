@@ -11,6 +11,7 @@ namespace MusicShop.DAL
         public DbSet<Album> Albums { get; set; }
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<Artist> Artists { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -18,6 +19,7 @@ namespace MusicShop.DAL
 
             modelBuilder.Entity<Album>().HasMany(c => c.Tracks);
             modelBuilder.Entity<Genre>().HasMany(c => c.Albums);
+            modelBuilder.Entity<Artist>().HasMany(c => c.Albums);
         }
     }
 }

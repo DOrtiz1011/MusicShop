@@ -11,8 +11,10 @@ namespace MusicShop.Controllers
     public sealed class HomeController : Controller
     {
         private static readonly MusicShopContext db = new MusicShopContext();
+
         private readonly AlbumRepository albumRepository = new AlbumRepository(db);
         private readonly GenreRepository genreRepository = new GenreRepository(db);
+        private readonly ArtistRepository artistRepository = new ArtistRepository(db);
 
         [HttpGet]
         public ActionResult Index() => View(new StoreViewModel
@@ -25,7 +27,8 @@ namespace MusicShop.Controllers
         public ActionResult Index(string search, string genre, int? fromYear, int? toYear)
         {
             var genreId = genreRepository.SearchFor(x => x.Name == genre).Select(x => x.ID).SingleOrDefault();
-            var albumList = albumRepository.AdvancedSearch(search, genreId, fromYear, toYear).ToList();
+            var artistIds = artistRepository.SearchFor(x => x.Name.Contains(search)).Select(x => x.ID).ToList();
+            var albumList = albumRepository.AdvancedSearch(search, genreId, fromYear, toYear, artistIds).ToList();
 
             return View(new StoreViewModel
             {
@@ -44,7 +47,8 @@ namespace MusicShop.Controllers
             return new AlbumViewModel
             {
                 Album = album,
-                Genre = genreRepository.GetById(album.GenreID)
+                Genre = genreRepository.GetById(album.GenreID),
+                Artist = artistRepository.GetById(album.ArtistID)
             };
         }
 
@@ -57,7 +61,8 @@ namespace MusicShop.Controllers
                 albumViewModelList.Add(new AlbumViewModel
                 {
                     Album = album,
-                    Genre = genreRepository.GetById(album.GenreID)
+                    Genre = genreRepository.GetById(album.GenreID),
+                    Artist = artistRepository.GetById(album.ArtistID)
                 });
             }
 
